@@ -15,7 +15,7 @@
 To install **htmlcapture**, use:
 
 ```sh
- go get github.com/rohankarn35/htmlcapture@latest
+go get github.com/rohankarn35/htmlcapture@latest
 ```
 
 ---
@@ -35,6 +35,8 @@ To install **htmlcapture**, use:
 ### 1️⃣ **Basic Usage: Capture a Raw HTML String**
 
 ```go
+package main
+
 import (
     "fmt"
     "os"
@@ -71,14 +73,26 @@ func main() {
 **Go Code:**
 
 ```go
-opts := htmlcapture.CaptureOptions{
-    Input: "template.html",
-    Variables: map[string]string{
-        "User": "Alice",
-        "Website": "Wonderland",
-    },
+package main
+
+import (
+    "github.com/rohankarn35/htmlcapture"
+)
+
+func main() {
+    opts := htmlcapture.CaptureOptions{
+        Input: "template.html",
+        Variables: map[string]string{
+            "User": "Alice",
+            "Website": "Wonderland",
+        },
+    }
+    img, err := htmlcapture.Capture(opts)
+    if err != nil {
+        log.Fatalf("Error capturing screenshot: %v", err)
+    }
+    os.WriteFile("screenshot.png", img, 0644)
 }
-img, err := htmlcapture.Capture(opts)
 ```
 
 ---
@@ -86,12 +100,24 @@ img, err := htmlcapture.Capture(opts)
 ### 3️⃣ **Capture a Website URL**
 
 ```go
-opts := htmlcapture.CaptureOptions{
-    Input: "https://example.com",
-    ViewportW: 1920,
-    ViewportH: 1080,
+package main
+
+import (
+    "github.com/rohankarn35/htmlcapture"
+)
+
+func main() {
+    opts := htmlcapture.CaptureOptions{
+        Input: "https://example.com",
+        ViewportW: 1920,
+        ViewportH: 1080,
+    }
+    img, err := htmlcapture.Capture(opts)
+    if err != nil {
+        log.Fatalf("Error capturing screenshot: %v", err)
+    }
+    os.WriteFile("screenshot.png", img, 0644)
 }
-img, err := htmlcapture.Capture(opts)
 ```
 
 ---
@@ -99,11 +125,23 @@ img, err := htmlcapture.Capture(opts)
 ### 4️⃣ **Capture a Specific Element (CSS Selector)**
 
 ```go
-opts := htmlcapture.CaptureOptions{
-    Input: "https://example.com",
-    Selector: "#main-content",
+package main
+
+import (
+    "github.com/rohankarn35/htmlcapture"
+)
+
+func main() {
+    opts := htmlcapture.CaptureOptions{
+        Input: "https://example.com",
+        Selector: "#main-content",
+    }
+    img, err := htmlcapture.Capture(opts)
+    if err != nil {
+        log.Fatalf("Error capturing screenshot: %v", err)
+    }
+    os.WriteFile("screenshot.png", img, 0644)
 }
-img, err := htmlcapture.Capture(opts)
 ```
 
 ---
@@ -131,5 +169,7 @@ MIT License
 - ✅ Add **PDF output support** 📄
 - ✅ Improve **performance optimizations** 🚀
 - ✅ Additional **image quality controls** 🎨
+
+---
 
 **Contributions are welcome! Feel free to open issues or submit pull requests.** 😃
