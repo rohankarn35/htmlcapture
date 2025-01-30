@@ -6,12 +6,16 @@
 
 ---
 
+[![GoDoc](https://pkg.go.dev/badge/github.com/rohankarn35/htmlcapture.svg)](https://pkg.go.dev/github.com/rohankarn35/htmlcapture)
+[![Go Report Card](https://goreportcard.com/badge/github.com/rohankarn35/htmlcapture)](https://goreportcard.com/report/github.com/rohankarn35/htmlcapture)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## 🚀 Installation
 
 To install **htmlcapture**, use:
 
 ```sh
- go get github.com/rohankarn35/htmlcapture
+ go get github.com/rohankarn35/htmlcapture@latest
 ```
 
 ---
