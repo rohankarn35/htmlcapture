@@ -16,7 +16,7 @@ func CaptureScreenshot(input string, isFile bool, viewportW, viewportH int, sele
 	defer cancel()
 
 	// Set a timeout to prevent long-running sessions
-	ctx, cancel = context.WithTimeout(ctx, 30*time.Second)
+	ctx, cancel = context.WithTimeout(ctx, 50*time.Second)
 	defer cancel()
 
 	var htmlContent string
@@ -27,7 +27,7 @@ func CaptureScreenshot(input string, isFile bool, viewportW, viewportH int, sele
 	if isValidURL(input) {
 		// If input is a URL, set it directly and wait for rendering
 		targetURL = input
-		waitForRender = chromedp.WaitReady("body") // Wait until the body is fully loaded
+		waitForRender = chromedp.WaitReady(selector) // Wait until the body is fully loaded
 	} else {
 		// If input is an HTML string, use it directly
 		htmlContent = input
@@ -52,7 +52,7 @@ func CaptureScreenshot(input string, isFile bool, viewportW, viewportH int, sele
 
 	// Capture the screenshot
 	if selector != "" {
-		tasks = append(tasks, chromedp.Screenshot(selector, &buf, chromedp.NodeVisible))
+		tasks = append(tasks, chromedp.Screenshot(selector, &buf, chromedp.ByQuery))
 	} else {
 		tasks = append(tasks, chromedp.FullScreenshot(&buf, 100)) // Full-page screenshot
 	}
