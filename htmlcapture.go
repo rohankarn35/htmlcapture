@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/rohankarn35/htmlcapture/internal/browser"
+	imgutil "github.com/rohankarn35/htmlcapture/internal/image"
 )
 
 type CaptureOptions struct {
@@ -19,8 +20,8 @@ type CaptureOptions struct {
 }
 
 var DefaultViewport = CaptureOptions{
-	ViewportW: 1080,
-	ViewportH: 1350,
+	ViewportW: 375,
+	ViewportH: 667,
 }
 
 func detectInputType(input string) (isFile bool, isURL bool) {
@@ -101,6 +102,10 @@ func Capture(opts CaptureOptions) ([]byte, error) {
 	if err != nil {
 		return nil, fmt.Errorf("failed to capture screenshot: %w", err)
 	}
+	img, err := imgutil.EnhanceQuality(imageData)
+	if err != nil {
+		return nil, fmt.Errorf("failed to capture screenshot: %w", err)
+	}
 
-	return imageData, nil
+	return img, nil
 }
